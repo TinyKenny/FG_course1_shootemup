@@ -1,26 +1,44 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Timer : MonoBehaviour
+namespace ShootEmUp
 {
-    public UnityEvent<float> onTimerChanged;
-    
-    private float timeLeft = 0.0f;
-    
-    public void StartTimer(float duration)
+    public class Timer : MonoBehaviour
     {
-        timeLeft = duration;
-        gameObject.SetActive(true);
-    }
+        //public UnityEvent onTimerBegin;
+        public UnityEvent<float> onTimerChanged;
+        public UnityEvent<float> onTimerChangedInverse;
+        public UnityEvent onTimerCompleted;
 
-    private void Update()
-    {
-        timeLeft -= Time.deltaTime;
+        private float timerDuration = 0.0f;
+        private float timeLeft = 0.0f;
+        private float timePercent = 0.0f;
 
-        if (timeLeft <= 0.0f)
+        private void Awake()
         {
-            gameObject.SetActive(false);
+            enabled = false;
+        }
+
+        public void StartTimer(float duration)
+        {
+            timerDuration = duration;
+            timeLeft = duration;
+            enabled = true;
+            //onTimerBegin.Invoke();
+        }
+
+        private void Update()
+        {
+            timeLeft -= Time.deltaTime;
+            timePercent = timeLeft / timerDuration;
+            onTimerChanged.Invoke(timePercent);
+            onTimerChangedInverse.Invoke(1.0f - timePercent);
+
+            if (timeLeft <= float.Epsilon)
+            {
+                enabled = false;
+                onTimerCompleted.Invoke();
+            }
         }
     }
 }

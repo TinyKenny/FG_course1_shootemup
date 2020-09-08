@@ -1,28 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ShieldController : MonoBehaviour
+namespace ShootEmUp
 {
-    [SerializeField] private float shieldDuration = 1.0f;
-    [SerializeField] private float shieldCooldown = 10.0f;
-
-    private bool shieldAvailable = true;
-    
-    
-    public void ActivateShield()
+    public class ShieldController : MonoBehaviour
     {
-        if (shieldAvailable)
+        [SerializeField] private GameObject shield = null;
+        [SerializeField] private Timer shieldTimer = null;
+        [SerializeField] private Timer shieldCooldownTimer = null;
+
+        [SerializeField] private float shieldDuration = 1.0f;
+        [SerializeField] private float shieldCooldown = 10.0f;
+
+        private bool shieldAvailable = true;
+
+        private void Awake()
         {
-            StartCoroutine(Shielding());
+            shield.SetActive(false);
+            shieldTimer.onTimerCompleted.AddListener(DeactivateShield);
+            shieldCooldownTimer.onTimerCompleted.AddListener(OnCooldownEnd);
         }
-    }
 
-    private IEnumerator Shielding()
-    {
-        shieldAvailable = false;
-        yield return new WaitForSeconds(shieldDuration);
+        public void ActivateShield()
+        {
+            if (shieldAvailable)
+            {
+                shieldAvailable = false;
+                shield.SetActive(true);
+                shieldTimer.StartTimer(shieldDuration);
+            }
+        }
 
-        shieldAvailable = true;
+        private void DeactivateShield()
+        {
+            shield.SetActive(false);
+            BeginCooldown();
+        }
+
+        private void BeginCooldown()
+        {
+            shieldCooldownTimer.StartTimer(shieldCooldown);
+        }
+
+        private void OnCooldownEnd()
+        {
+            shieldAvailable = true;
+        }
     }
 }
