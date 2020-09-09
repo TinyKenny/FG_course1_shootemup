@@ -2,6 +2,7 @@
 {
     public interface IWeapon
     {
-        void Attack();
+        void BeginAttack();
+        void EndAttack();
     }
 }
