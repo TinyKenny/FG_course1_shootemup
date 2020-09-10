@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
@@ -26,7 +25,7 @@ namespace ShootEmUp
 
                 for (int i = 0; i < projectileCount; i++)
                 {
-                    ObjectPooler.GetPooledObject(bulletPrefab, transform.position, rotation);
+                    ObjectPoolManager.GetPooledObject(bulletPrefab, transform.position, rotation);
                     rotation *= Quaternion.AngleAxis(anglePerStep, transform.forward);
                 }
             }

@@ -13,9 +13,7 @@ namespace ShootEmUp
 
         public void BeginAttack()
         {
-
             attackCoroutine = StartCoroutine(FullAutoAttack(Mathf.Max(0.0f, timeOfLastShot + secondsBetweenShots - Time.time)));
-
         }
 
         public void EndAttack()
@@ -29,7 +27,7 @@ namespace ShootEmUp
 
             while (true)
             {
-                GameObject bullet = ObjectPooler.GetPooledObject(bulletPrefab, transform.position, transform.rotation);
+                GameObject bullet = ObjectPoolManager.GetPooledObject(bulletPrefab, transform.position, transform.rotation);
                 timeOfLastShot = Time.time;
                 yield return new WaitForSeconds(secondsBetweenShots);
             }

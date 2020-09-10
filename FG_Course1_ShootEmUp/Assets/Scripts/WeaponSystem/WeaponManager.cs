@@ -5,13 +5,15 @@ namespace ShootEmUp
     public class WeaponManager : MonoBehaviour
     {
         private IWeapon[] weapons;
+        private int lockedWeaponIndex;
         private IWeapon currentWeapon;
         private int currentWeaponIndex;
-        //private bool Attacking
 
         private void Awake()
         {
+            lockedWeaponIndex = 1;
             currentWeaponIndex = 0;
+            
             weapons = GetComponentsInChildren<IWeapon>();
             currentWeapon = weapons[currentWeaponIndex];
 
@@ -40,10 +42,18 @@ namespace ShootEmUp
             currentWeapon.EndAttack();
         }
 
+        public void UnlockNextWeapon()
+        {
+            if (lockedWeaponIndex < weapons.Length)
+            {
+                lockedWeaponIndex++;
+            }
+        }
+
         private void SwapWeapon(int relativeIndex)
         {
             currentWeapon.gameObject.SetActive(false);
-            currentWeaponIndex = (weapons.Length + currentWeaponIndex + relativeIndex) % weapons.Length;
+            currentWeaponIndex = (lockedWeaponIndex + currentWeaponIndex + relativeIndex) % lockedWeaponIndex;
             currentWeapon = weapons[currentWeaponIndex];
             currentWeapon.gameObject.SetActive(true);
         }

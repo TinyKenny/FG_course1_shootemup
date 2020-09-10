@@ -40,6 +40,13 @@ namespace ShootEmUp
             {
                 weaponManager.EndAttack();
             }
+            
+            #if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Keypad0))
+            {
+                weaponManager.UnlockNextWeapon();
+            }
+            #endif // UNITY_EDITOR
         }
     }
 }
