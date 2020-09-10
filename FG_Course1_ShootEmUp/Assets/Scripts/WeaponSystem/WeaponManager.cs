@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
@@ -9,19 +7,19 @@ namespace ShootEmUp
         private IWeapon[] weapons;
         private IWeapon currentWeapon;
         private int currentWeaponIndex;
+        //private bool Attacking
 
         private void Awake()
         {
-            Debug.Log((-1)%3);
             currentWeaponIndex = 0;
             weapons = GetComponentsInChildren<IWeapon>();
             currentWeapon = weapons[currentWeaponIndex];
 
             foreach (IWeapon weapon in weapons)
             {
-                ((MonoBehaviour)weapon).gameObject.SetActive(false);
+                weapon.gameObject.SetActive(false);
             }
-            ((MonoBehaviour)currentWeapon).gameObject.SetActive(true);
+            currentWeapon.gameObject.SetActive(true);
         }
 
         private void Update()
@@ -32,12 +30,22 @@ namespace ShootEmUp
             }
         }
 
+        public void BeginAttack()
+        {
+            currentWeapon.BeginAttack();
+        }
+
+        public void EndAttack()
+        {
+            currentWeapon.EndAttack();
+        }
+
         private void SwapWeapon(int relativeIndex)
         {
-            ((MonoBehaviour)currentWeapon).gameObject.SetActive(false);
+            currentWeapon.gameObject.SetActive(false);
             currentWeaponIndex = (weapons.Length + currentWeaponIndex + relativeIndex) % weapons.Length;
             currentWeapon = weapons[currentWeaponIndex];
-            ((MonoBehaviour)currentWeapon).gameObject.SetActive(true);
+            currentWeapon.gameObject.SetActive(true);
         }
     }
 }

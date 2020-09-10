@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891480e162ebb814fa360de5a1d9905f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
 --- !u!1 &267469503
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b613bdfe26d0646890c2979030bfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
+  coneAngle: 10
+  projectileCount: 3
 --- !u!1 &575979513
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldController: {fileID: 267469506}
+  weaponManager: {fileID: 282236192}
 --- !u!114 &2044982595209094770
 MonoBehaviour:
   m_ObjectHideFlags: 0
