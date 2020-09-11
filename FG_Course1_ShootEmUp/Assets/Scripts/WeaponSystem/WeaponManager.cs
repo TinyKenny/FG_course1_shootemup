@@ -4,7 +4,7 @@ namespace ShootEmUp
 {
     public class WeaponManager : MonoBehaviour
     {
-        private IWeapon[] weapons;
+        private IWeapon[] weapons; // TODO a total of at least 3 different weapons
         private int lockedWeaponIndex;
         private IWeapon currentWeapon;
         private int currentWeaponIndex;
@@ -44,6 +44,7 @@ namespace ShootEmUp
 
         public void UnlockNextWeapon()
         {
+            // TODO in-game weapon unlocks
             if (lockedWeaponIndex < weapons.Length)
             {
                 lockedWeaponIndex++;

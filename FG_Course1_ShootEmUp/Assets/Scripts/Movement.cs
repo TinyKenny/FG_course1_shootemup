@@ -20,7 +20,8 @@ namespace ShootEmUp
         {
             if (input.sqrMagnitude > Mathf.Epsilon)
             {
-                body.MovePosition(body.position + movementSpeed * Time.fixedDeltaTime * input);
+                body.MovePosition(body.position +
+                                  movementSpeed * Time.fixedDeltaTime * Vector2.ClampMagnitude(input, 1.0f));
             }
         }
     }

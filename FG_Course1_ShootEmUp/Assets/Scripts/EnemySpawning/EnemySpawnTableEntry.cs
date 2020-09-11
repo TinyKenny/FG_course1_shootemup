@@ -9,7 +9,7 @@ namespace ShootEmUp
         [SerializeField] private float spawnValue = 1.0f;
         [SerializeField] private float spawnValueIncrementSize = 1.0f;
 
-        public float currentSpawnValue = 0.0f;
+        private float currentSpawnValue = 0.0f;
 
         public void Initialize()
         {
