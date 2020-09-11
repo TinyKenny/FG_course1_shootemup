@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
+  secondsBetweenShots: 0.3
 --- !u!1 &267469503
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,8 +184,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
-  coneAngle: 10
-  projectileCount: 3
+  coneAngle: 90
+  projectileCount: 2
+  secondsBetweenShots: 0.5
 --- !u!1 &575979513
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044982594847152648}
   - component: {fileID: 2044982595209094771}
+  - component: {fileID: 1557719319954606132}
   - component: {fileID: 2044982595209094769}
   - component: {fileID: 2044982595209094770}
   m_Layer: 0
@@ -631,7 +634,23 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &1557719319954606132
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044982594847152649}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &2044982595209094769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,4 +677,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da310cfc124c2c644bd137f9a6bfe58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 2

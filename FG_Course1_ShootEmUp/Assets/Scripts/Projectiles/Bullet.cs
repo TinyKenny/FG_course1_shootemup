@@ -35,5 +35,15 @@ namespace ShootEmUp
                 gameObject.SetActive(false);
             }
         }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            IAttackable hitAttackable = other.GetComponent<IAttackable>();
+            if (hitAttackable != null)
+            {
+                hitAttackable.TakeDamage(data.damage);
+            }
+            gameObject.SetActive(false);
+        }
     }
 }

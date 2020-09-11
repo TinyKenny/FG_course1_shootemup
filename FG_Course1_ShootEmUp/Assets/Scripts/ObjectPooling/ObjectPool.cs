@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ShootEmUp
 {
@@ -12,17 +13,24 @@ namespace ShootEmUp
         {
             public Poolable nextPoolable;
             
-            public delegate void OnDisableDelegate(Poolable caller);
-            private OnDisableDelegate onDisableCallback;
+            public delegate void OnObjectRemovalDelegate(Poolable caller);
+            public OnObjectRemovalDelegate onDisableCallback;
+            private OnObjectRemovalDelegate onDestroyCallback;
 
-            public void SetUpPoolable(OnDisableDelegate callback)
+            public void SetUpPoolable(OnObjectRemovalDelegate onDisable, OnObjectRemovalDelegate onDestroy)
             {
-                onDisableCallback = callback;
+                onDisableCallback = onDisable;
+                onDestroyCallback = onDestroy;
             }
         
             private void OnDisable()
             {
                 onDisableCallback?.Invoke(this);
+            }
+
+            private void OnDestroy()
+            {
+                onDestroyCallback?.Invoke(this);
             }
         }
         #endregion // Poolable component
@@ -43,23 +51,54 @@ namespace ShootEmUp
 
             if (hasNext)
             {
-                toReturn = nextPoolable.gameObject;
+                toReturn = Pop();
                 toReturn.transform.SetPositionAndRotation(position, rotation);
-
-                nextPoolable = nextPoolable.nextPoolable;
-                count--;
-                hasNext = count > 0;
-                
                 toReturn.SetActive(true);
             }
             else
             {
                 toReturn = GameObject.Instantiate(sourcePrefab, position, rotation);
                 Poolable poolableComponent = toReturn.AddComponent<Poolable>();
-                poolableComponent.SetUpPoolable(AddObjectToPool);
+                poolableComponent.SetUpPoolable(AddObjectToPool, RemoveFromStack);
             }
             
             return toReturn;
+        }
+
+        private GameObject Pop()
+        {
+            GameObject toReturn = nextPoolable.gameObject;
+            nextPoolable = nextPoolable.nextPoolable;
+            count--;
+            hasNext = count > 0;
+            return toReturn;
+        }
+
+        private void RemoveFromStack(Poolable toRemove)
+        {
+            if (!hasNext || !toRemove)
+            {
+                return;
+            }
+
+            if (nextPoolable == toRemove)
+            {
+                nextPoolable = nextPoolable.nextPoolable;
+                count--;
+                hasNext = count > 0;
+                return;
+            }
+
+            for (Poolable currentValid = nextPoolable; currentValid.nextPoolable; currentValid = currentValid.nextPoolable)
+            {
+                if (currentValid.nextPoolable == toRemove)
+                {
+                    currentValid.nextPoolable = currentValid.nextPoolable.nextPoolable;
+                    count--;
+                    hasNext = count > 0;
+                    return;
+                }
+            }
         }
 
         private void AddObjectToPool(Poolable objectToAdd)
