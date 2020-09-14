@@ -3,18 +3,22 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(Movement), typeof(IAttackable))]
     public class PlayerInput : MonoBehaviour
     {
         // TODO homing missiles
-        // TODO game over condition
         // TODO main menu
         // TODO game over menu
         // TODO high score system
+        // TODO adjust player collider and shield collider
+        // TODO graphics for everything
+        // TODO "how to play"-instructions
+        
         [SerializeField] private ShieldController shieldController = null;
         [SerializeField] private WeaponManager weaponManager = null;
 
         private Movement movement;
+        private IAttackable attackable;
         
         #region Input Axes
         private const string horizontalID = "Horizontal";
@@ -26,6 +30,8 @@ namespace ShootEmUp
         private void Awake()
         {
             movement = GetComponent<Movement>();
+            attackable = GetComponent<IAttackable>();
+            attackable.onDeath += LevelLoader.LoadGameOverMenu;
         }
 
         private void Update()
@@ -37,6 +43,15 @@ namespace ShootEmUp
                 shieldController.ActivateShield();
             }
 
+            if (Input.GetButtonDown("SwapWeaponNext"))
+            {
+                weaponManager.SwapToNextWeapon();
+            }
+            else if (Input.GetButtonDown("SwapWeaponPrevious"))
+            {
+                weaponManager.SwapToPreviousWeapon();
+            }
+
             if (Input.GetButtonDown(fireID))
             {
                 weaponManager.BeginAttack();
@@ -45,13 +60,13 @@ namespace ShootEmUp
             {
                 weaponManager.EndAttack();
             }
-            
-            #if UNITY_EDITOR
+
+#if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Keypad0))
             {
                 weaponManager.UnlockNextWeapon();
             }
-            #endif // UNITY_EDITOR
+#endif // UNITY_EDITOR
         }
     }
 }

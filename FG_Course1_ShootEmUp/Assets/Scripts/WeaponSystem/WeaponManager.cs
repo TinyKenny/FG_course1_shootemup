@@ -4,6 +4,7 @@ namespace ShootEmUp
 {
     public class WeaponManager : MonoBehaviour
     {
+        // TODO some kind of weapons UI
         private IWeapon[] weapons; // TODO a total of at least 3 different weapons
         private int lockedWeaponIndex;
         private IWeapon currentWeapon;
@@ -24,12 +25,14 @@ namespace ShootEmUp
             currentWeapon.gameObject.SetActive(true);
         }
 
-        private void Update()
+        public void SwapToNextWeapon()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                SwapWeapon(1);
-            }
+            SwapWeapon(1);
+        }
+
+        public void SwapToPreviousWeapon()
+        {
+            SwapWeapon(-1);
         }
 
         public void BeginAttack()

@@ -29,6 +29,7 @@ namespace ShootEmUp
             else if (_currentObjectPoolManager != this)
             {
                 Destroy(gameObject);
+                return;
             }
             
             objectPools = new Dictionary<GameObject, ObjectPool>();

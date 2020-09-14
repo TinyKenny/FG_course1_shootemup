@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653757673}
   - component: {fileID: 653757674}
+  - component: {fileID: 653757675}
   m_Layer: 13
   m_Name: EnemyExistanceArea
   m_TagString: Untagged
@@ -325,6 +326,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 15}
   m_EdgeRadius: 0
+--- !u!114 &653757675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653757672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7759361c5a32b7648a63930997596f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &739407555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,24 +1218,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1676201449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2044982594847152649, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-  m_PrefabInstance: {fileID: 2044982595209094767}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1676201450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676201449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9fb58b7f14a3eb46b2432282c2911bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 5de2018aa22420248a469f1c133f96e5, type: 2}
 --- !u!1 &1710682177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1242,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710682177}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d611dcc077f661b47b7e2fa45fbbe3b0, type: 3}
   m_Name: 
@@ -1513,30 +1508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 161388660, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 267469503, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 282236190, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 494807578, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 575979513, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 737909678, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 737909680, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
       propertyPath: onTimerChangedInverse.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1545,10 +1516,6 @@ PrefabInstance:
       propertyPath: onTimerChangedInverse.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1964401635}
-    - target: {fileID: 788417074, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 788417078, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
       propertyPath: onTimerChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1557,18 +1524,6 @@ PrefabInstance:
       propertyPath: onTimerChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1964401635}
-    - target: {fileID: 1415918949, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1442648479, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1557719319954606132, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2044982594847152648, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1616,10 +1571,6 @@ PrefabInstance:
     - target: {fileID: 2044982594847152649, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044982594847152649, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
