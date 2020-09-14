@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 namespace ShootEmUp
 {
     [RequireComponent(typeof(Movement), typeof(IAttackable))]
     public abstract class EnemyBehaviour : MonoBehaviour
     {
-        protected Movement movement;
-        protected IAttackable attackable;
+        protected Movement movement = null;
+        protected IAttackable attackable = null;
+        [SerializeField] private float scoreValue = 1.0f;
 
         protected virtual void Awake()
         {
@@ -20,7 +23,13 @@ namespace ShootEmUp
 
         private void OnDeath()
         {
+            ScoreManager.IncreaseScore(scoreValue);
             gameObject.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
+            throw new NotImplementedException();
         }
     }
 }

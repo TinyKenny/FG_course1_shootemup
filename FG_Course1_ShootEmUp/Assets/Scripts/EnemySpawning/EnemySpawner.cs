@@ -1,13 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
+using Random = UnityEngine.Random;
 
 namespace ShootEmUp
 {
     
     public class EnemySpawner : MonoBehaviour
     {
+        private static EnemySpawner _currentEnemySpawner = null;
+
+        private static EnemySpawner CurrentEnemySpawner
+        {
+            get
+            {
+                if (!_currentEnemySpawner)
+                {
+                    _currentEnemySpawner = FindObjectOfType<EnemySpawner>();
+                }
+                return _currentEnemySpawner;
+            }
+        }
+        
         [SerializeField, Min(0.0f)] private float minimumTimeBetweenSpawns = 1.0f;
         [SerializeField, Min(0.0f)] private float maximumTimeBetweenSpawns = 1.0f;
         [SerializeField] private List<Vector3> spawnPoints = null;
@@ -16,8 +32,22 @@ namespace ShootEmUp
         private float spawnValueCap = 0.0f;
         private Vector3 previousSpawnPoint;
 
+        public delegate void onEnemyBecomeInactiveDelegate(GameObject enemy);
+
+        public onEnemyBecomeInactiveDelegate onEnemyBecomeInactiveCallback;
+
         private void Awake()
         {
+            if (!_currentEnemySpawner)
+            {
+                _currentEnemySpawner = this;
+            }
+            else if (_currentEnemySpawner != this)
+            {
+                Destroy(this);
+                return;
+            }
+            
             Assert.IsFalse(maximumTimeBetweenSpawns < minimumTimeBetweenSpawns,
                 "max time between spawns can't be lower than min time between spawns");
             Assert.IsTrue(spawnPoints.Count > 0, "List of enemy spawn points can't be empty");
@@ -28,18 +58,40 @@ namespace ShootEmUp
                 spawnValueCap += entry.GetSpawnValue();
             }
 
+            onEnemyBecomeInactiveCallback += func1;
+            
+            
             previousSpawnPoint = spawnPoints[0];
             spawnPoints.RemoveAt(0);
+        }
+
+        private void func1(GameObject enem)
+        {
+            
+        }
+
+        private Vector3 func2()
+        {
+            return spawnPoints[1];
+        }
+
+        private void Start()
+        {
             StartCoroutine(SpawnOverTime());
         }
 
         private void Update()
         {
             // TODO list (or similar) of active enemies
-            if (Input.GetKeyDown(KeyCode.O))
+            /*if (Input.GetKeyDown(KeyCode.O))
             {
                 SpawnEnemy();
-            }
+            }*/
+        }
+
+        public static void EnemyBecomeInactive(GameObject enemy)
+        {
+            
         }
 
         private IEnumerator SpawnOverTime()

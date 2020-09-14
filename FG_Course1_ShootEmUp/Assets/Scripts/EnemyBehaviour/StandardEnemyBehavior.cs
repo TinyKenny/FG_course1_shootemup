@@ -5,8 +5,6 @@ namespace ShootEmUp
 {
     public class StandardEnemyBehavior : EnemyBehaviour
     {
-        // TODO enemies give points when defeated
-
         [SerializeField, Range(0.01f, 1.0f)] private float movementSpeedPortionX = 0.5f;
         [SerializeField, Min(0.1f)] private float turnFrequency;
         private float timeSinceSpawn;

@@ -6,10 +6,11 @@ namespace ShootEmUp
     [RequireComponent(typeof(Collider2D))]
     public class UnitHealth : MonoBehaviour, IAttackable
     {
-        [SerializeField] private HealthData data = null;
-
-        private float currentHealth;
         public event UnityAction onDeath;
+
+        [SerializeField] private HealthData data = null;
+        
+        private float currentHealth;
 
         private void OnEnable()
         {

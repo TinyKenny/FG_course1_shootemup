@@ -7,12 +7,9 @@ namespace ShootEmUp
     public class PlayerInput : MonoBehaviour
     {
         // TODO homing missiles
-        // TODO main menu
-        // TODO game over menu
-        // TODO high score system
         // TODO adjust player collider and shield collider
+        // TODO "how to play"-instructions (unlock new weapons and game goal)
         // TODO graphics for everything
-        // TODO "how to play"-instructions
         
         [SerializeField] private ShieldController shieldController = null;
         [SerializeField] private WeaponManager weaponManager = null;
