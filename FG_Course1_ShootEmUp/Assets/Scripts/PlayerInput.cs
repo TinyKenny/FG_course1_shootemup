@@ -6,9 +6,8 @@ namespace ShootEmUp
     [RequireComponent(typeof(Movement), typeof(IAttackable))]
     public class PlayerInput : MonoBehaviour
     {
-        // TODO homing missiles
         // TODO adjust player collider and shield collider
-        // TODO "how to play"-instructions (unlock new weapons and game goal)
+        // TODO "how to play"-instructions (unlock new weapons, shield and game goal)
         // TODO graphics for everything
         
         [SerializeField] private ShieldController shieldController = null;

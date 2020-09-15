@@ -8,6 +8,8 @@ namespace ShootEmUp
     [RequireComponent(typeof(Movement), typeof(IAttackable))]
     public abstract class EnemyBehaviour : MonoBehaviour
     {
+        // TODO enemy scaling
+        
         protected Movement movement = null;
         protected IAttackable attackable = null;
         [SerializeField] private float scoreValue = 1.0f;
@@ -21,6 +23,11 @@ namespace ShootEmUp
             attackable.onDeath += OnDeath;
         }
 
+        protected virtual void OnEnable()
+        {
+            MissileTargetManager.AddTarget(gameObject);
+        }
+
         private void OnDeath()
         {
             ScoreManager.IncreaseScore(scoreValue);
@@ -29,7 +36,7 @@ namespace ShootEmUp
 
         private void OnDisable()
         {
-            throw new NotImplementedException();
+            MissileTargetManager.RemoveTarget(gameObject);
         }
     }
 }

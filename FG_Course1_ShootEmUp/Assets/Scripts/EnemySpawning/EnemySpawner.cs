@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
-using Random = UnityEngine.Random;
 
 namespace ShootEmUp
 {
@@ -32,10 +30,6 @@ namespace ShootEmUp
         private float spawnValueCap = 0.0f;
         private Vector3 previousSpawnPoint;
 
-        public delegate void onEnemyBecomeInactiveDelegate(GameObject enemy);
-
-        public onEnemyBecomeInactiveDelegate onEnemyBecomeInactiveCallback;
-
         private void Awake()
         {
             if (!_currentEnemySpawner)
@@ -57,28 +51,25 @@ namespace ShootEmUp
                 entry.Initialize();
                 spawnValueCap += entry.GetSpawnValue();
             }
-
-            onEnemyBecomeInactiveCallback += func1;
-            
             
             previousSpawnPoint = spawnPoints[0];
             spawnPoints.RemoveAt(0);
-        }
-
-        private void func1(GameObject enem)
-        {
-            
-        }
-
-        private Vector3 func2()
-        {
-            return spawnPoints[1];
         }
 
         private void Start()
         {
             StartCoroutine(SpawnOverTime());
         }
+
+        /*
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                SpawnEnemy();
+            }
+        }
+        */
 
         private IEnumerator SpawnOverTime()
         {

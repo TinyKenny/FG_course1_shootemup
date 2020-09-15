@@ -5,7 +5,7 @@ namespace ShootEmUp
     public class WeaponManager : MonoBehaviour
     {
         // TODO some kind of weapons UI
-        private IWeapon[] weapons; // TODO a total of at least 3 different weapons
+        private IWeapon[] weapons;
         private int lockedWeaponIndex;
         private IWeapon currentWeapon;
         private int currentWeaponIndex;
@@ -51,6 +51,10 @@ namespace ShootEmUp
             if (lockedWeaponIndex < weapons.Length)
             {
                 lockedWeaponIndex++;
+            }
+            else
+            {
+                // TODO slightly improve weapons in some way
             }
         }
 

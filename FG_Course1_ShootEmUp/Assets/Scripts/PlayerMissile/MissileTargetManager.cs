@@ -41,26 +41,28 @@ namespace ShootEmUp
 
         public static void AddTarget(GameObject targetToAdd)
         {
-            // TODO have enemies call this on enable
             CurrentMissileTargetManager.targets.Add(targetToAdd);
         }
 
         public static void RemoveTarget(GameObject targetToRemove)
         {
-            // TODO have enemies call this on disable
-            CurrentMissileTargetManager.targets.Remove(targetToRemove);
-            CurrentMissileTargetManager.onTargetRemoved?.Invoke(targetToRemove);
+            if (CurrentMissileTargetManager)
+            {
+                CurrentMissileTargetManager.targets.Remove(targetToRemove);
+                CurrentMissileTargetManager.onTargetRemoved?.Invoke(targetToRemove);
+            }
         }
 
         public static void UnregisterTargetRemovalListener(OnTargetRemovedDelegate listenerToRemove)
         {
-            // TODO have homing missiles call this on disable
-            CurrentMissileTargetManager.onTargetRemoved -= listenerToRemove;
+            if (CurrentMissileTargetManager)
+            {
+                CurrentMissileTargetManager.onTargetRemoved -= listenerToRemove;
+            }
         }
 
         public static GameObject GetTarget(OnTargetRemovedDelegate onTargetRemovedListener)
         {
-            // TODO have homing missiles call this on enable
             if (CurrentMissileTargetManager.targets.Count == 0)
             {
                 return null;

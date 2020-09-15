@@ -5,7 +5,7 @@ namespace ShootEmUp
     [RequireComponent(typeof(Rigidbody2D))]
     public class Missile : MonoBehaviour
     {
-        [SerializeField] private MissileData data;
+        [SerializeField] private MissileData data = null;
         
         private Rigidbody2D body = null;
         private float endOfLifeTime = 0.0f;
