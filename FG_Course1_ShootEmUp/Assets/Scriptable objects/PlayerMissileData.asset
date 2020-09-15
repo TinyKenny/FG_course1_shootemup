@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14cb92a3ced3e9f47b3ab5542704d106, type: 3}
-  m_Name: StandardBullet
+  m_Script: {fileID: 11500000, guid: b95c4ff3104e9974db402f1ae1c43744, type: 3}
+  m_Name: PlayerMissileData
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 3
   damage: 1
   timeToLive: 5
+  turnSpeed: 15

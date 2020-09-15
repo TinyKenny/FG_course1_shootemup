@@ -20,13 +20,9 @@ namespace ShootEmUp
         }
 
         private List<GameObject> targets;
-        
-        // TODO Dictionary, have (not yet created) enum faction as keys and list of targets as values
-        // TODO attackables should have factions
-        // TODO attackables register themselves as targets in the missile manager, providing their factions
-        // TODO attackables unregister themselves as targets when disabled
-        // TODO homing missiles can request targets based on faction
-        // TODO homing missiles receive a callback if their target is unregistered
+
+        public delegate void OnTargetRemovedDelegate(GameObject target);
+        public OnTargetRemovedDelegate onTargetRemoved;
 
         private void Awake()
         {
@@ -43,9 +39,36 @@ namespace ShootEmUp
             targets = new List<GameObject>();
         }
 
-        public static GameObject GetTarget()
+        public static void AddTarget(GameObject targetToAdd)
         {
-            return null;
+            // TODO have enemies call this on enable
+            CurrentMissileTargetManager.targets.Add(targetToAdd);
+        }
+
+        public static void RemoveTarget(GameObject targetToRemove)
+        {
+            // TODO have enemies call this on disable
+            CurrentMissileTargetManager.targets.Remove(targetToRemove);
+            CurrentMissileTargetManager.onTargetRemoved?.Invoke(targetToRemove);
+        }
+
+        public static void UnregisterTargetRemovalListener(OnTargetRemovedDelegate listenerToRemove)
+        {
+            // TODO have homing missiles call this on disable
+            CurrentMissileTargetManager.onTargetRemoved -= listenerToRemove;
+        }
+
+        public static GameObject GetTarget(OnTargetRemovedDelegate onTargetRemovedListener)
+        {
+            // TODO have homing missiles call this on enable
+            if (CurrentMissileTargetManager.targets.Count == 0)
+            {
+                return null;
+            }
+
+            CurrentMissileTargetManager.onTargetRemoved += onTargetRemovedListener;
+            int targetIndex = Random.Range(0, CurrentMissileTargetManager.targets.Count);
+            return CurrentMissileTargetManager.targets[targetIndex];
         }
     }
 }

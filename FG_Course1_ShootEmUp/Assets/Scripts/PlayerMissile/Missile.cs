@@ -1,16 +1,17 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class Bullet : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Missile : MonoBehaviour
     {
-        [SerializeField] private BulletData data = null;
-        private Rigidbody2D body;
-        private Vector2 movementDirection;
-        private float endOfLifeTime;
+        [SerializeField] private MissileData data;
+        
+        private Rigidbody2D body = null;
+        private float endOfLifeTime = 0.0f;
 
+        [System.NonSerialized] public Vector2 targetDirection;
+        
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
@@ -18,13 +19,16 @@ namespace ShootEmUp
 
         private void OnEnable()
         {
-            movementDirection = transform.up;
             endOfLifeTime = Time.time + data.timeToLive;
+            targetDirection = transform.up;
         }
 
         private void FixedUpdate()
         {
-            body.MovePosition(body.position + Time.fixedDeltaTime * data.speed * movementDirection);
+            float targetAngle = Vector2.SignedAngle(transform.up, targetDirection);
+            body.MoveRotation(body.rotation + Mathf.Clamp(targetAngle, -data.turnSpeed, data.turnSpeed) * Time.fixedDeltaTime);
+            
+            body.MovePosition(body.position + Time.fixedDeltaTime * data.speed * (Vector2)transform.up);
         }
 
         private void Update()

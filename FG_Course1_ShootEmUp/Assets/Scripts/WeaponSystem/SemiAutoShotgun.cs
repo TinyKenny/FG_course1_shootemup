@@ -6,7 +6,7 @@ namespace ShootEmUp
     {
         [SerializeField] private GameObject bulletPrefab = null;
         [SerializeField, Range(0.0f, 360.0f)] private float coneAngle = 10.0f;
-        [SerializeField, Min(2)] private int projectileCount = 5;
+        [SerializeField, Min(1)] private int projectileCount = 5;
         [SerializeField, HideInInspector] private float secondsBetweenShots = 1.0f;
 
         private float timeOfLastShot = 0.0f;

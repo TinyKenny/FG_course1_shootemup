@@ -80,20 +80,6 @@ namespace ShootEmUp
             StartCoroutine(SpawnOverTime());
         }
 
-        private void Update()
-        {
-            // TODO list (or similar) of active enemies
-            /*if (Input.GetKeyDown(KeyCode.O))
-            {
-                SpawnEnemy();
-            }*/
-        }
-
-        public static void EnemyBecomeInactive(GameObject enemy)
-        {
-            
-        }
-
         private IEnumerator SpawnOverTime()
         {
             while (true)
