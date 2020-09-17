@@ -181,6 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: e491de0514c8f9c4aa955cbb4fb772f9, type: 2}
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &789557170610691475
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -282,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aab861ada721b642bba8aa33a884ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumCooldown: 0.9
-  maximumCooldown: 1.1
+  minimumCooldown: 1.6
+  maximumCooldown: 2
 --- !u!1 &7441661058082332720
 GameObject:
   m_ObjectHideFlags: 0

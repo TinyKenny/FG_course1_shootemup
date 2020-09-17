@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891480e162ebb814fa360de5a1d9905f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
+  bulletPrefab: {fileID: 2005874326149668784, guid: 43a141dcad4a0604fbe5c62a69e2f741, type: 3}
   secondsBetweenShots: 0.3
 --- !u!1 &267469503
 GameObject:
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b613bdfe26d0646890c2979030bfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
+  bulletPrefab: {fileID: 9077864993495435730, guid: 94dd22c2bea21b74e9cca8aab91602e2, type: 3}
   coneAngle: 90
   projectileCount: 5
   secondsBetweenShots: 0.5
@@ -309,6 +309,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff83d69e1b61b0f429130bf875d44af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onTimerBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Charging
+          m_BoolArgument: 0
+        m_CallState: 2
   onTimerChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -327,21 +342,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onTimerCompleted:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
-        m_MethodName: set_value
-        m_Mode: 0
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Ready
           m_BoolArgument: 0
         m_CallState: 2
-  onTimerCompleted:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &788417074
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,24 +415,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff83d69e1b61b0f429130bf875d44af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onTimerBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Active
+          m_BoolArgument: 0
+        m_CallState: 2
   onTimerChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
         m_MethodName: set_fillAmount
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
-        m_MethodName: set_value
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -708,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da310cfc124c2c644bd137f9a6bfe58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 3
 --- !u!114 &1676201450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +740,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5de2018aa22420248a469f1c133f96e5, type: 2}
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+        m_MethodName: set_value
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &2045969330298873158
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
-﻿using Unity.Mathematics;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -26,7 +25,7 @@ namespace ShootEmUp
             
             Vector2 spawnMinPoint = spawnMinPointProperty.vector2Value;
             EditorGUI.BeginChangeCheck();
-            spawnMinPoint = Handles.PositionHandle(spawnMinPoint, quaternion.identity);
+            spawnMinPoint = Handles.PositionHandle(spawnMinPoint, Quaternion.identity);
             if (EditorGUI.EndChangeCheck())
             {
                 spawnMinPointProperty.vector2Value = spawnMinPoint;
@@ -34,7 +33,7 @@ namespace ShootEmUp
             
             Vector2 spawnMaxPoint = spawnMaxPointProperty.vector2Value;
             EditorGUI.BeginChangeCheck();
-            spawnMaxPoint = Handles.PositionHandle(spawnMaxPoint, quaternion.identity);
+            spawnMaxPoint = Handles.PositionHandle(spawnMaxPoint, Quaternion.identity);
             if (EditorGUI.EndChangeCheck())
             {
                 spawnMaxPointProperty.vector2Value = spawnMaxPoint;

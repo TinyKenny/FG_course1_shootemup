@@ -4,7 +4,6 @@ namespace ShootEmUp
 {
     public class WeaponManager : MonoBehaviour
     {
-        // TODO some kind of weapons UI
         private IWeapon[] weapons;
         private int lockedWeaponIndex;
         private IWeapon currentWeapon;
@@ -53,7 +52,7 @@ namespace ShootEmUp
             }
             else
             {
-                // TODO slightly improve weapons in some way
+                WeaponDropManager.DisableWeaponDrops();
             }
         }
 

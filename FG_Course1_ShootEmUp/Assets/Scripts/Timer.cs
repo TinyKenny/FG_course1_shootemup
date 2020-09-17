@@ -5,7 +5,7 @@ namespace ShootEmUp
 {
     public class Timer : MonoBehaviour
     {
-        //public UnityEvent onTimerBegin;
+        public UnityEvent onTimerBegin;
         public UnityEvent<float> onTimerChanged;
         public UnityEvent<float> onTimerChangedInverse;
         public UnityEvent onTimerCompleted;
@@ -24,7 +24,7 @@ namespace ShootEmUp
             timerDuration = duration;
             timeLeft = duration;
             enabled = true;
-            //onTimerBegin.Invoke();
+            onTimerBegin.Invoke();
         }
 
         private void Update()

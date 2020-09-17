@@ -17,12 +17,6 @@ namespace ShootEmUp
 
         private void OnEnable()
         {
-            /*
-            foreach (EnemyAbility ability in abilities)
-            {
-                StartCoroutine(ability.UseAbilityRepeating(Random.Range(minimumCooldown, maximumCooldown)));
-            }
-            */
             StartCoroutine(UseAbilityRepeating());
         }
 
@@ -30,7 +24,7 @@ namespace ShootEmUp
         {
             while (true)
             {
-                yield return new WaitForSeconds(Random.Range(maximumCooldown, maximumCooldown));
+                yield return new WaitForSeconds(Random.Range(minimumCooldown, maximumCooldown));
                 foreach (EnemyProjectileAttack attack in projectileAttacks)
                 {
                     attack.PerformAttack();

@@ -1,15 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 
 namespace ShootEmUp
 {
     [RequireComponent(typeof(Movement), typeof(IAttackable))]
     public abstract class EnemyBehaviour : MonoBehaviour
     {
-        // TODO enemy scaling
-        
         protected Movement movement = null;
         protected IAttackable attackable = null;
         [SerializeField] private float scoreValue = 1.0f;

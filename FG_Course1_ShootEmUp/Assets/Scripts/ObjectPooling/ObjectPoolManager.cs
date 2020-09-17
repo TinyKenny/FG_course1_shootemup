@@ -35,11 +35,6 @@ namespace ShootEmUp
             objectPools = new Dictionary<GameObject, ObjectPool>();
         }
 
-        public static GameObject GetPooledObject(GameObject prefab)
-        {
-            return GetPooledObject(prefab, prefab.transform.position, prefab.transform.rotation);
-        }
-
         public static GameObject GetPooledObject(GameObject prefab, Vector3 position, Quaternion rotation)
         {
             if (!CurrentOjbectPoolManager.objectPools.ContainsKey(prefab))

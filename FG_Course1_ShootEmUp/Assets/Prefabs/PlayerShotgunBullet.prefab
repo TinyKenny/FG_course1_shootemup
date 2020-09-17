@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6795602642502901154, guid: d1485e7d3b071994080113551049460d, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c5bbb2f10097e94e85c29394a733202, type: 2}
     - target: {fileID: 6795602642502901165, guid: d1485e7d3b071994080113551049460d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -53,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6795602642502901167, guid: d1485e7d3b071994080113551049460d, type: 3}
       propertyPath: m_Name
-      value: PlayerBullet
+      value: PlayerShotgunBullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1485e7d3b071994080113551049460d, type: 3}

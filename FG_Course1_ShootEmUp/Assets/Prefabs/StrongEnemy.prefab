@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a589f4919e8030c42a42eafaca707541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValue: 1
+  scoreValue: 3
   movementSpeedPortionX: 0.7
   turnFrequency: 2
 --- !u!114 &3340036012881417663
@@ -181,6 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: e491de0514c8f9c4aa955cbb4fb772f9, type: 2}
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &789557170610691475
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -372,8 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aab861ada721b642bba8aa33a884ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumCooldown: 1.3
-  maximumCooldown: 1.6
+  minimumCooldown: 2
+  maximumCooldown: 2.5
 --- !u!1 &7441661058082332720
 GameObject:
   m_ObjectHideFlags: 0

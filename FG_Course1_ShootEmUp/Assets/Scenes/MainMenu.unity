@@ -896,8 +896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 151}
-  m_SizeDelta: {x: 858.1, y: 440.76117}
+  m_AnchoredPosition: {x: 0, y: 127.4}
+  m_SizeDelta: {x: 858.1, y: 627.53094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &879729509
 MonoBehaviour:
@@ -947,7 +947,24 @@ MonoBehaviour:
     spacebar.
 
     Press E to swap to the next unlocked weapon, and Q to swap to
-    the previous onlocked weapon.'
+    the previous onlocked weapon.
+
+    You can unlock new weapons by picking up the
+    black and white item that enemies sometimes drop when they are killed.
+
+
+    The
+    enemies will fire projectiles which will lower your health if they hit you. You
+    are defeated when your helath reaches zero.
+
+    You can make yourself temporarily
+    immune to enemy attacks by pressing left shift.
+
+    The goal of the game is
+    to have as much points as possible when you are defeated. Points are earned by
+    killing enemies.
+
+'
 --- !u!222 &879729510
 CanvasRenderer:
   m_ObjectHideFlags: 0

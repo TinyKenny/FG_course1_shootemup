@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ShootEmUp
 {
@@ -8,9 +7,6 @@ namespace ShootEmUp
     {
         [SerializeField] private GameObject bulletPrefab = null;
         [SerializeField] private float secondsBetweenShots = 0.1f;
-        //[SerializeField] private Image weaponImage = null;
-        //[SerializeField] private Texture2D weaponActiveIcon = null;
-        //[SerializeField] private Texture2D weaponInactiveIcon = null;
 
         private Coroutine attackCoroutine;
         private float timeOfLastShot = 0.0f;
