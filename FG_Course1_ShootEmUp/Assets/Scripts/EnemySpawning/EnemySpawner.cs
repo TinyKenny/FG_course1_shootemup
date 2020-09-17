@@ -9,26 +9,14 @@ namespace ShootEmUp
     public class EnemySpawner : MonoBehaviour
     {
         private static EnemySpawner _currentEnemySpawner = null;
-
-        private static EnemySpawner CurrentEnemySpawner
-        {
-            get
-            {
-                if (!_currentEnemySpawner)
-                {
-                    _currentEnemySpawner = FindObjectOfType<EnemySpawner>();
-                }
-                return _currentEnemySpawner;
-            }
-        }
         
         [SerializeField, Min(0.0f)] private float minimumTimeBetweenSpawns = 1.0f;
         [SerializeField, Min(0.0f)] private float maximumTimeBetweenSpawns = 1.0f;
-        [SerializeField] private List<Vector3> spawnPoints = null;
         [SerializeField] private EnemySpawnTableEntry[] spawnTable = null;
+        [SerializeField] private Vector2 spawnMinPoint = Vector2.zero;
+        [SerializeField] private Vector2 spawnMaxPoint = Vector2.zero;
 
         private float spawnValueCap = 0.0f;
-        private Vector3 previousSpawnPoint;
 
         private void Awake()
         {
@@ -38,38 +26,24 @@ namespace ShootEmUp
             }
             else if (_currentEnemySpawner != this)
             {
-                Destroy(this);
+                Destroy(gameObject);
                 return;
             }
             
             Assert.IsFalse(maximumTimeBetweenSpawns < minimumTimeBetweenSpawns,
                 "max time between spawns can't be lower than min time between spawns");
-            Assert.IsTrue(spawnPoints.Count > 0, "List of enemy spawn points can't be empty");
             Assert.IsTrue(spawnTable.Length > 0, "List of enemies points can't be empty");
             foreach (EnemySpawnTableEntry entry in spawnTable)
             {
                 entry.Initialize();
                 spawnValueCap += entry.GetSpawnValue();
             }
-            
-            previousSpawnPoint = spawnPoints[0];
-            spawnPoints.RemoveAt(0);
         }
 
         private void Start()
         {
             StartCoroutine(SpawnOverTime());
         }
-
-        /*
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                SpawnEnemy();
-            }
-        }
-        */
 
         private IEnumerator SpawnOverTime()
         {
@@ -128,18 +102,34 @@ namespace ShootEmUp
         private void SpawnEnemyByTableEntry(EnemySpawnTableEntry entry)
         {
             spawnValueCap -= entry.ResetSpawnValue();
-            Vector3 positionToSpawnAt = previousSpawnPoint;
 
-            if (spawnPoints.Count > 0)
-            {
-                int spawnPointIndex = Random.Range(0, spawnPoints.Count);
-                positionToSpawnAt = spawnPoints[spawnPointIndex];
-                spawnPoints.RemoveAt(spawnPointIndex);
-                spawnPoints.Add(previousSpawnPoint);
-                previousSpawnPoint = positionToSpawnAt;
-            }
+            Vector3 positionToSpawnAt = new Vector3(Random.Range(spawnMinPoint.x, spawnMaxPoint.x),
+                Random.Range(spawnMinPoint.y, spawnMaxPoint.y));
             
             ObjectPoolManager.GetPooledObject(entry.GetPrefab(), positionToSpawnAt, Quaternion.identity);
         }
+
+        
+        private void OnDrawGizmosSelected()
+        {
+            Color oldColor = Gizmos.color;
+
+            if (spawnMinPoint.x < spawnMaxPoint.x && spawnMinPoint.y < spawnMaxPoint.y)
+            {
+                Gizmos.color = Color.green;
+            }
+            else
+            {
+                Gizmos.color = Color.magenta;
+            }
+
+            Vector2 spawnAreaSize = spawnMaxPoint - spawnMinPoint;
+            Vector2 spawnCenter = spawnMinPoint + (0.5f * spawnAreaSize);
+            
+            Gizmos.DrawWireCube(spawnCenter, spawnAreaSize);
+            
+            Gizmos.color = oldColor;
+        }
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -20,24 +21,28 @@ namespace ShootEmUp
 
         private void OnSceneGUI()
         {
-            SerializedProperty spawnPointsProperty = serializedObject.FindProperty("spawnPoints");
-            int arraySize = spawnPointsProperty.arraySize;
-
-            for (int i = 0; i < arraySize; i++)
+            SerializedProperty spawnMinPointProperty = serializedObject.FindProperty("spawnMinPoint");
+            SerializedProperty spawnMaxPointProperty = serializedObject.FindProperty("spawnMaxPoint");
+            
+            Vector2 spawnMinPoint = spawnMinPointProperty.vector2Value;
+            EditorGUI.BeginChangeCheck();
+            spawnMinPoint = Handles.PositionHandle(spawnMinPoint, quaternion.identity);
+            if (EditorGUI.EndChangeCheck())
             {
-                SerializedProperty elementProperty = spawnPointsProperty.GetArrayElementAtIndex(i);
-                Vector3 spawnPoint = elementProperty.vector3Value;
-                
-                EditorGUI.BeginChangeCheck();
-                spawnPoint = Handles.PositionHandle(spawnPoint, Quaternion.identity);
-                if (EditorGUI.EndChangeCheck())
-                {
-                    spawnPoint.z = 0.0f;
-                    elementProperty.vector3Value = spawnPoint;
-                }
+                spawnMinPointProperty.vector2Value = spawnMinPoint;
             }
-
+            
+            Vector2 spawnMaxPoint = spawnMaxPointProperty.vector2Value;
+            EditorGUI.BeginChangeCheck();
+            spawnMaxPoint = Handles.PositionHandle(spawnMaxPoint, quaternion.identity);
+            if (EditorGUI.EndChangeCheck())
+            {
+                spawnMaxPointProperty.vector2Value = spawnMaxPoint;
+            }
             serializedObject.ApplyModifiedProperties();
+
+            
+
         }
     }
 }

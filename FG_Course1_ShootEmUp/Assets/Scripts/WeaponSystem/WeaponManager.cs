@@ -47,7 +47,6 @@ namespace ShootEmUp
 
         public void UnlockNextWeapon()
         {
-            // TODO in-game weapon unlocks
             if (lockedWeaponIndex < weapons.Length)
             {
                 lockedWeaponIndex++;

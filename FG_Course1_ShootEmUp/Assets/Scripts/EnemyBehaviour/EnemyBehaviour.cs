@@ -30,6 +30,7 @@ namespace ShootEmUp
 
         private void OnDeath()
         {
+            WeaponDropManager.EnemyDied(transform.position);
             ScoreManager.IncreaseScore(scoreValue);
             gameObject.SetActive(false);
         }

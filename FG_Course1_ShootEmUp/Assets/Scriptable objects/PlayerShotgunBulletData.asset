@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14cb92a3ced3e9f47b3ab5542704d106, type: 3}
-  m_Name: StandardBullet
+  m_Name: PlayerShotgunBulletData
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 6
   damage: 1
   timeToLive: 5

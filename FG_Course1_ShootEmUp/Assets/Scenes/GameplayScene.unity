@@ -425,10 +425,10 @@ GameObject:
   - component: {fileID: 837938069}
   m_Layer: 0
   m_Name: ScoreManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &837938069
 MonoBehaviour:
@@ -451,7 +451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837938068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 853.29895, y: 525.639, z: -305.4877}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -762,10 +762,10 @@ GameObject:
   - component: {fileID: 1050075998}
   m_Layer: 0
   m_Name: MissileTargetManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1050075998
 MonoBehaviour:
@@ -919,7 +919,7 @@ GameObject:
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1105212865
 MonoBehaviour:
@@ -1201,6 +1201,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1489752936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489752937}
+  - component: {fileID: 1489752938}
+  m_Layer: 0
+  m_Name: WeaponDropManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1489752937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489752936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1489752938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489752936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca25e4c9c89cce4ab4aba3df2f09e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPickupPrefab: {fileID: 1652530339400692555, guid: 4d323ff39cdc89140b1cc1e5acf65204, type: 3}
+  requiredKillsToDrop: 10
 --- !u!1 &1553142681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,10 +1442,10 @@ GameObject:
   - component: {fileID: 1710682178}
   m_Layer: 0
   m_Name: EnemySpawner
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1710682178
 MonoBehaviour:
@@ -1416,14 +1461,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumTimeBetweenSpawns: 0.8
   maximumTimeBetweenSpawns: 1.2
-  spawnPoints:
-  - {x: -3, y: 6, z: 0}
-  - {x: 0, y: 6, z: 0}
-  - {x: 3, y: 6, z: 0}
   spawnTable:
   - prefab: {fileID: 3340036012881417652, guid: c2de1c8bb8fa8ac4ab5de5aa18cd3543, type: 3}
     spawnValue: 0
     spawnValueIncrementSize: 1
+  - prefab: {fileID: 3340036012881417652, guid: 769db63696f8d2f47ba384d5036d46cc, type: 3}
+    spawnValue: 3
+    spawnValueIncrementSize: 1
+  spawnMinPoint: {x: -4.257868, y: 5.324451}
+  spawnMaxPoint: {x: 4.3507695, y: 6.643385}
 --- !u!4 &1710682179
 Transform:
   m_ObjectHideFlags: 0
@@ -1675,18 +1721,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 658856172, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: secondsBetweenShots
-      value: 1.1111112
-      objectReference: {fileID: 0}
-    - target: {fileID: 658856172, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: projectileCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 658856172, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
-      propertyPath: coneAngle
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 737909680, guid: 3cc57fde489dcb64fa79e5ebf54a672c, type: 3}
       propertyPath: onTimerChangedInverse.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

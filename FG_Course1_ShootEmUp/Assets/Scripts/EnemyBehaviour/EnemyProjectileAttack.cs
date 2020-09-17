@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class EnemyProjectileAttack : EnemyAbility
+    public class EnemyProjectileAttack : MonoBehaviour
     {
         [SerializeField] private GameObject projectile = null;
 
-        protected override void UseAbility()
+        public void PerformAttack()
         {
             ObjectPoolManager.GetPooledObject(projectile, transform.position, transform.rotation);
         }
